@@ -19,6 +19,7 @@ class Group:
         email = input("email: ")
         student = Student(name, phone, age, email)
         self.students.append(student)
+
     def view_students(self):
         count = 0
         for item in self.students:
@@ -62,6 +63,9 @@ class ERP:
 
 
 erp = ERP()
+otm = OTM()
+group = Group()
+
 
 
 def group_manager(group: Group):
@@ -117,4 +121,14 @@ def erp_manager(ep: ERP):
             break
 
 
-erp_manager(erp)
+def manager():
+    while True:
+        a = input("1.Erp_manager\n2.Otm_manager\n3.Group_manager")
+        if a == '1':
+            erp_manager(erp)
+        elif a == '2':
+            otm_manager(otm)
+        elif a == '3':
+            group_manager(group)
+        else:
+            break
