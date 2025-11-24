@@ -97,5 +97,7 @@ def erp_manager(erp:Erp):
             print("_________")
             b = int(input("Index: "))
             university_manager(erp.universities[b-1])
+        else:
+            break
 
 erp_manager(erp)
