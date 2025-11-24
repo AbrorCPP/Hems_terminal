@@ -1,59 +1,126 @@
-class Student(object):
-    def __init__(self, name,phone, age,email,title):
+class Student:
+    def __init__(self, name, phone, age, email):
         self.name = name
         self.phone = phone
         self.age = age
         self.email = email
 
+
 class Group:
-    def __init__(self, title,profession):
+    def __init__(self, title, profession):
         self.title = title
         self.profession = profession
         self.students = []
-    def addStudent(self, title):
-        name = input("Enter the name: ")
-        phone = input("Enter the phone: ")
-        age = input("Enter the age: ")
-        email = input("Enter the email: ")
-        student = Student(name,phone,age,email,title)
-        self.students.append(student)
-    def viewStudent(self,title):
-        count = 0
-        for student in self.students:
-            if student.title == title:
-                count +=1
-                print(f"{count}. {student.name} {student.phone} {student.age} {student.email}")
 
-class University:
+    def add_student(self):
+        name = input("name: ")
+        phone = input("phone: ")
+        age = input("age: ")
+        email = input("email: ")
+        student = Student(name, phone, age, email)
+        self.students.append(student)
+    def view_students(self):
+        count = 0
+        for item in self.students:
+            count+=1
+            print(f'{count}. name:{item.name}, age:{item.age}')
+
+
+class OTM:
     def __init__(self, title):
         self.title = title
-        self.univers = []
+        self.groups = []
 
-    def addGroup(self, title1):
-        profession = input("Enter the profession: ")
-        title = title1
-        gr = Group(title,profession)
-        self.univers.append(gr)
+    def add_group(self):
+        title = input("title:")
+        profession = input("profession:")
+        group = Group(title, profession)
+        self.groups.append(group)
 
-    def viewGroup(self,title):
+    def view_groups(self):
         count = 0
-        for univer in self.univers:
-            if univer.title == title:
-                count+=1
-                print(f"{count}. {univer.title} {univer.profession}")
+        for item in self.groups:
+            count += 1
+            print(f'{count}. title:{item.title} profession:{item.profession}')
 
-class Erp:
+
+class ERP:
     def __init__(self):
+        self.title = 'ERP'
         self.otms = []
 
-    def addOtm(self):
-        title = input("Enter the title: ")
-        otm = University(title)
+    def add_otm(self):
+        title = input('title:')
+        otm = OTM(title)
         self.otms.append(otm)
 
-    def viewOtm(self,title):
+    def view_otms(self):
         count = 0
-        for otm in self.otms:
-            count +=1
-            print(f"{count}. {otm.title} {otm.profession}")
+        for item in self.otms:
+            count += 1
+            print(f'{count}. title:{item.title}')
+
+
+erp = ERP()
+
+
+def group_manager(group: Group):
+    while True:
+        kod = input(' 1. add student \n 2. view students \n 3. break :')
+        if kod == '1':
+            print('===========')
+            group.add_student()
+            print('------------')
+        elif kod == '2':
+            print('===========')
+            group.view_students()
+            print('------------')
+        else:
+            break
+
+
+def otm_manager(otm: OTM):
+    while True:
+        kod = input(' 1. add group \n 2. view groups \n 3. break :')
+        if kod == '1':
+            print('===========')
+            otm.add_group()
+            print('------------')
+        elif kod == '2':
+            print('===========')
+            otm.view_groups()
+            print('------------')
+        else:
+            break
+
+
+def erp_manager(ep: ERP):
+    while True:
+        kod = input(' 1. add otm \n 2. view otms \n 3. break :')
+        if kod == '1':
+            print('===========')
+            ep.add_otm()
+            print('------------')
+        elif kod == '2':
+            print('===========')
+            ep.view_otms()
+            print('------------')
+        elif kod=='3':
+            print('===========')
+            ep.view_otms()
+            print('------------')
+            index = int(input("otm_id :"))
+            otm = ep.otms[index-1]
+            otm_manager(otm)
+
+        else:
+            break
+
+
+erp_manager(erp)
+
+
+
+
+
 
